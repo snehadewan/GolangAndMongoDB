@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+	<title>A simple form</title>
+	<style type="text/css">
+		form{
+			margin-left:10%;
+		}
+		#submitButton{
+			margin-left: 8%;
+		}
+	</style>
+
+</head>
+<body>
+	<h1>Please complete this form and click on submit</h1>
+	<form action="/saveDetails" method="post">
+		Name: <input type="text" name="name"/><br><br>
+		Email: <input type="email" name="email"/><br><br>
+		Phone: <input type="text" name="phone"/><br><br>	
+		<input type="submit" id="submitButton" value="Submit">
+	</form>
+</body>
+</html>
