@@ -2,7 +2,7 @@
 <head>
 	<title>Details Saved!</title>
 	<style type="text/css">
-		#submitButton{
+		button{
 			height: 5%;
 			background-color:#9c6c6c;
 			display: inline-block;
@@ -13,10 +13,42 @@
 			font-weight: bold;
 		}
 	</style>
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("h4").hide();
+				$("button").click(function(){
+					var email=document.getElementById("email").value;
+					$.ajax({
+						type:"POST",
+						url:"http://localhost:8900/viewDetails",
+						data:{
+							'email':email,
+						},
+						success:function(result){
+							var obj = JSON.parse(result);
+							var name = obj.Name;
+							var phone = obj.Phone;
+							$("h4").show();
+							$("#div1").text("Name: "+name)
+							$("#div2").text("Phone no: "+phone)
+						},
+						error: function(jqXHR, textStatus, errorThrown){
+          					alert('error');
+          				}
+					});
+				});
+			});
+		</script>
 </head>
 <body>
 	<h2>Congratulations, Your data has been successfully saved.</h2>
-	<form method="post" action="/viewDetails">
-		<input type="submit" id="submitButton" value="Click here to view your data"/>
+	<h3>Enter your email id to view your data</h3>
+	<form method="post" action="">
+		Email id: <input type="email" id="email" required/>
+		<button type="button">Click here to view your data</button>
 	</form>
+	<h4>Your details are as follows::</h4>
+	<div id="div1"></div>
+	<div id="div2"></div>
 </html>

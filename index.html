@@ -9,15 +9,41 @@
 			margin-left: 8%;
 		}
 	</style>
-
+	 <meta charset="UTF-8">
+	
+	<script type="text/javascript" src="jquery-3.3.1.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#submitButton").click(function(){
+					var name=document.getElementById("name").value;  
+					var email=document.getElementById("email").value;  
+					var phone=document.getElementById("phone").value;
+					$.ajax({
+						type:"POST",
+						url:"http://localhost:8900/saveDetails",
+						data:{
+							'name':name,
+							'email':email,
+							'phone':phone
+						},
+						success:function(result){
+							window.location = "data.html"
+						},
+						error: function(jqXHR, textStatus, errorThrown){
+          					alert('error',jqXHR, textStatus, errorThrown);
+          				}
+					});
+				});
+			});
+		</script>
 </head>
 <body>
-	<h1>Please complete this form and click on submit</h1>
-	<form action="/saveDetails" method="post">
-		Name: <input type="text" name="name"/><br><br>
-		Email: <input type="email" name="email"/><br><br>
-		Phone: <input type="text" name="phone"/><br><br>	
-		<input type="submit" id="submitButton" value="Submit">
+	<h1>Please complete this form and click on submitButton</h1>
+	<form action="" method="post">
+		Name: <input type="text" id="name" required /><br><br>
+		Email: <input type="email" id="email" required/><br><br>
+		Phone: <input type="text" id="phone" required/><br><br>	
+		<input type="submit" id="submitButton" value="Submit" required/>
 	</form>
 </body>
 </html>

@@ -1,5 +1,6 @@
 To execute
 
 Step 1: Connect to mongo DB: sudo service mongod start
-Step 2: In a terminal: node app.js
-Step 3: In a browser: http://localhost:3000/
+Step 2: Run the api: go run userDetailsApi.go 
+Step 3: Open index.html file in a browser
+To stop mongo DB: sudo service mongod stop
